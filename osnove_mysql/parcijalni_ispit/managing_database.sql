@@ -1,5 +1,11 @@
 --ASSIGNMENT:
+--Dohvatite sve zaposlenike i njihove plaće.
+-- Dohvatite sve voditelje odjela i izračunajte prosjek njihovih plaća.
+-- Kreirajte proceduru koja će računati prosjek plaća svih zaposlenika.
 
+--------------------------------------------------------------------------------------------------------------------------------
+
+--Dohvatite sve zaposlenike i njihove plaće.
 
 --> primjer samo dohvat osnovne plaće:
 SELECT 
@@ -42,29 +48,8 @@ LEFT JOIN
 WHERE
     sg.department_id = e.department_id;
 
-
--- Kreirajte proceduru koja će računati prosjek plaća svih zaposlenika.
-SELECT 
-    AVG(sg.salary + COALESCE(psa.amount, 0) + COALESCE(r.amount, 0) + COALESCE(m.amount, 0)) AS Prosječna_Plaća
-FROM 
-    employees e
-JOIN 
-    salary_archieve sa ON e.unique_salary_id = sa.unique_salary_id
-JOIN 
-    salary_grades sg ON sa.salary_id = sg.salary_id
-LEFT JOIN 
-    position_salary_adjustment psa ON sa.work_complexity_id = psa.work_complexity_id
-LEFT JOIN 
-    reward_one_time r ON sa.reward_id = r.reward_id
-LEFT JOIN 
-    adjustment_monthly m ON sa.monthly_adjustment_id = m.monthly_adjustment_id
-WHERE
-    sg.department_id = e.department_id;
-
-
-
-
 -- Dohvatite sve voditelje odjela i izračunajte prosjek njihovih plaća.
+
 --head
 SELECT 
     h.head_id AS ID_Head_Department,
@@ -117,16 +102,16 @@ LEFT JOIN
 WHERE
     sg.department_id = e.department_id;
 
---Dohvatite sve zaposlenike i njihove plaće.
+
+-- Kreirajte proceduru koja će računati prosjek plaća svih zaposlenika.
+-- izračun za lipanj 2024.
 SELECT 
-    e.employee_id AS Zaposlenik_id,
-    e.name AS Ime,
-    e.surname AS Prezime,
-    sg.salary AS Osnovna_Plaća,
-    COALESCE(psa.amount, 0) AS Dodatni_poslovi,
-    COALESCE(r.amount, 0) AS Bonus,
-    COALESCE(m.amount, 0) AS Dodatak,
-    (sg.salary + COALESCE(psa.amount, 0) + COALESCE(r.amount, 0) + COALESCE(m.amount, 0)) AS Ukupna_Plaća
+    AVG(
+        sg.salary + 
+        COALESCE(psa.amount, 0) + 
+        COALESCE(r.amount, 0) + 
+        COALESCE(m.amount, 0)
+    ) AS Prosječna_Plaća
 FROM 
     employees e
 JOIN 
@@ -138,7 +123,10 @@ LEFT JOIN
 LEFT JOIN 
     reward_one_time r ON sa.reward_id = r.reward_id
 LEFT JOIN 
-    adjustment_monthly m ON sa.monthly_adjustment_id = m.monthly_adjustment_id;
+    adjustment_monthly m ON sa.monthly_adjustment_id = m.monthly_adjustment_id
+WHERE
+    sa.payroll_date BETWEEN '2023-06-01' AND '2023-06-30';  -- Lipanj 2023. godine
+
 
 --additional
 
