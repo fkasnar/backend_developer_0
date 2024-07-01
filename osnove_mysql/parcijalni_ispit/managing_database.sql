@@ -88,7 +88,7 @@ CALL plaće_sa_dodacima();
 --head
 DELIMITER //
 
-CREATE PROCEDURE placi_head()
+CREATE PROCEDURE placa_head()
 BEGIN
     SELECT 
         h.head_id AS placa_head,
