@@ -20,10 +20,7 @@
 
 DELIMITER //
 
-CREATE PROCEDURE plaće_od_do(
-    IN od_datuma DATE,
-    IN do_datuma DATE
-)
+CREATE PROCEDURE placee()
 BEGIN
     SELECT 
         e.name AS Ime, 
@@ -37,13 +34,12 @@ BEGIN
     JOIN 
         salary_grades sg ON e.department_id = sg.department_id
     WHERE
-        sg.salary_id = sa.salary_id AND
-        sa.payroll_date BETWEEN startDate AND endDate;
+        sg.salary_id = sa.salary_id;
 END //
 
 DELIMITER ;
 
-CALL plaće_od_do('2023-06-01', '2023-06-30');
+CALL placee;
 
 
 --> primjer zbroja svih dodataka na placu:
@@ -88,7 +84,7 @@ CALL plaće_sa_dodacima();
 --head
 DELIMITER //
 
-CREATE PROCEDURE placa_head()
+CREATE PROCEDURE placi_head()
 BEGIN
     SELECT 
         h.head_id AS placa_head,
@@ -123,7 +119,7 @@ CALL placi_head();
 --manager
 DELIMITER //
 
-CREATE PROCEDURE plaće_managera()
+CREATE PROCEDURE place_managera()
 BEGIN
     SELECT 
         h.head_id AS Voditelj,
