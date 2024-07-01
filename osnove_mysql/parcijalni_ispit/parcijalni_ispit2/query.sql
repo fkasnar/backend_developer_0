@@ -22,7 +22,7 @@ Dohvatite sve voditelje odjela i plaće
         JOIN
             place p ON z.placa_id = p.placa_id
         WHERE
-            z.aktivan_zaposlenik = 1 AND z.voditelj_odjela = 1;
+            z.aktivan_zaposlenik = 1 AND z.voditelj = TRUE;
 
 Dohvatite sve voditelje odjela i izračunajte prosjek njihovih plaća.
 
@@ -33,13 +33,13 @@ Dohvatite sve voditelje odjela i izračunajte prosjek njihovih plaća.
             (SELECT AVG(p2.iznos)
             FROM zaposlenici z2
             JOIN place p2 ON z2.placa_id = p2.placa_id
-            WHERE z2.aktivan_zaposlenik = 1 AND z2.voditelj_odjela = 1) AS ProsjecnaPlaca
+            WHERE z2.aktivan_zaposlenik = 1 AND z2.voditelj = 1) AS ProsjecnaPlaca
         FROM
             zaposlenici z
         JOIN
             place p ON z.placa_id = p.placa_id
         WHERE
-            z.aktivan_zaposlenik = 1 AND z.voditelj_odjela = 1;
+            z.aktivan_zaposlenik = 1 AND z.voditelj = 1;
 
  Kreirajte proceduru koja će računati prosjek plaća svih zaposlenika
 
