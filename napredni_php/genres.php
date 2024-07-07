@@ -7,15 +7,17 @@ if($connection === false){
     die("Connection failed: ". mysqli_connect_error());
 }
 
-$sql = "SELECT * from clanovi;";
+$sql = "SELECT *
+FROM zanrovi
+ORDER BY id ASC;";
 $result = mysqli_query($connection, $sql);
 
 if (mysqli_num_rows($result) === 0) {
     die("There are no memebers in our datbase!");
 }
 
-$members = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$genres = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_close($connection);
 
-require 'members.view.php';
+require 'genres.view.php';
