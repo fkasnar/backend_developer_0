@@ -10,10 +10,10 @@
             <a href="/" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-house me-2"></i>Home</a>
         </li>
         <li class="nav-item">
-            <a href="members.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/members.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-person-circle me-2"></i>Clanovi</a>
+            <a href="members.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/members.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-person-circle me-2"></i>Članovi</a>
         </li>
         <li class="nav-item">
-            <a href="genres.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === 'genres.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-camera-reels me-2"></i>Zanrovi</a>
+            <a href="genres.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/genres.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-camera-reels me-2"></i>Žanrovi</a>
         </li>
         <li class="nav-item">
             <a href="movies.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/movies.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-film me-2"></i>Filmovi</a>
