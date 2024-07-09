@@ -20,12 +20,12 @@
             <div class="manage">
             <div class="manage2">
             <div>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                  <input type="search" class="form-control1 form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+                <form action="" method="GET" name="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                  <input type="text" name="k"  form-control1 form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+                  <input type="submit" name="" value="Search" class="btn btn-warning spacing">
                 </form>
                 </div>
-                <button type="button" class="btn btn-warning spacing">Traži</button>
-                
+
                 
                 <a href="#" class="d-flex p-1 align-items-center text-decoration-none  text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-layer-backward rounded-circle me-2 align-items-center spacing" width="32" height="32"></i>
