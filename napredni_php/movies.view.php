@@ -1,7 +1,12 @@
 <?php include_once '/var/www/backend_developer_0/napredni_php/partials/header.php' ?>
 
 <main class="container my-3 d-flex flex-column flex-grow-1">
-    <h1>Filmovi</h1>
+<div class="title flex-between">
+        <h1>Filmovi</h1>
+        <div class="action-buttons">
+            <a href="/genre-create.php" type="submit" class="btn btn-primary">Dodaj novi</a>
+        </div>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -15,6 +20,8 @@
             </tr>
         </thead>
         <tbody>
+        <?php include_once 'partials/searchbar_view.php' ?>
+        <hr>
             <?php foreach ($movies as $movie): ?>
                 <tr>
                     <td><?= $movie['naslov'] ?></td>

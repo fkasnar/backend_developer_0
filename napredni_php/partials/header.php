@@ -17,24 +17,5 @@
             <?php include_once 'nav.php' ?>
 
 
-            <div class="manage">
-            <div class="manage2">
-            <div>
-                <form action="" method="GET" name="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                  <input type="text" name="k"  form-control1 form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-                  <input type="submit" name="" value="Search" class="btn btn-warning spacing">
-                </form>
-                </div>
-
-                
-                <a href="#" class="d-flex p-1 align-items-center text-decoration-none  text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-layer-backward rounded-circle me-2 align-items-center spacing" width="32" height="32"></i>
-                    Razvrstaj
-                </a>
-                
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">Silazno</a></li>
-                    <li><a class="dropdown-item" href="#">Uzlazno</a></li>
-                </ul>
-                </div>
+           
 </aside>   

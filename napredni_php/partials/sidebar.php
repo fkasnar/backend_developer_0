@@ -16,23 +16,16 @@
             <a href="genres.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/genres.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-camera-reels me-2"></i>Žanrovi</a>
         </li>
         <li class="nav-item">
-            <a href="movies.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/movies.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-film me-2"></i>Filmovi</a>
+            <a href="movies.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/movies.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-film me-2"></i>Filmovi i Cijenik</a>
+        </li>
+        <li class="nav-item">
+            <a href="lend.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/lend.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-calendar me-2"></i>Posudbe</a>
+        </li>
+        <li class="nav-item">
+            <a href="copies.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/copies.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-clipboard-data me-2"></i>Primjerci</a>
         </li>
     </ul>
 
-    <hr>
 
-    <div class="dropdown">
-        <a href="#" class="d-flex p-1 align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>Korisnik</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-    </div>
+
 </aside>

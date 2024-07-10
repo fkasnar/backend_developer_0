@@ -34,18 +34,24 @@ body{
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.manage{
-    display: flex;
-    flex-direction: column;
+.button{
+    border: solid;
+    height: 2.5rem;
+    width: 20%;
+    border-radius: 20px;
+    background-color: #ffcd39;
 }
 
-.manage2{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    align-self:center;
-}
+#button1:hover{
+    background-color: white;
+  }
 
-.spacing{
-    margin-right: 20px;
+.searchbar{
+    height: 2.5rem;
+    width: 79%;
+    border: solid 1px;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #212529;
+    color: grey;
 }

@@ -6,7 +6,9 @@
                 <li><a href="index.php" class="nav-link px-2 text-secondary">Home</a></li>
                 <li><a href="members.php" class="nav-link px-2 text-white">Članovi</a></li>
                 <li><a href="genres.php" class="nav-link px-2 text-white">Žanrovi</a></li>
-                <li><a href="movies.php" class="nav-link px-2 text-white">Filmovi</a></li>
+                <li><a href="movies.php" class="nav-link px-2 text-white">Filmovi i Cijenik</a></li>
+                <li><a href="lend.php" class="nav-link px-2 text-white">Posudbe</a></li>
+                <li><a href="copies.php" class="nav-link px-2 text-white">Primjerci</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">

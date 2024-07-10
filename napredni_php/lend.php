@@ -33,20 +33,35 @@ try {
     die("Connection failed: " . $th->getMessage());
 }
 
-$sql = "SELECT f.naslov, f.godina, tip_filma, z.ime AS Zanr, c.cijena AS Cijena
-        FROM filmovi f
-        JOIN zanrovi z ON f.zanr_id = z.id
-        JOIN cjenik c ON f.cjenik_id = c.id;";
+$sql = "SELECT
+    p.datum_posudbe,
+    p.datum_povrata,
+    c.ime AS 'Ime Clana',
+    f.naslov,
+    m.tip AS Medij,
+    zanrovi.ime AS Zanr,
+    cj.tip_filma,
+    ROUND(cj.cijena * m.koeficijent, 2) AS Cijena,
+    ROUND(cj.zakasnina_po_danu * m.koeficijent, 2) AS Zakasnina
+from
+    posudba p
+    JOIN clanovi c ON p.clan_id = c.id
+    JOIN posudba_kopija pk ON p.id = pk.posudba_id
+    JOIN kopija k ON pk.kopija_id = k.id
+    JOIN filmovi f ON k.film_id = f.id
+    JOIN mediji m ON k.medij_id = m.id
+    JOIN zanrovi ON zanrovi.id = f.zanr_id
+    JOIN cjenik cj ON cj.id = f.cjenik_id;";
 $statement = $pdo->prepare($sql);
 $statement->execute();
 
-$movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+$lends = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-if (count($movies) === 0) {
+if (count($lends) === 0) {
     die("There are no movies in our database!");
 }
 
-$pageTitle = 'Movies';
+$pageTitle = 'Posudbe';
 
-require 'movies.view.php';
+require 'lend.view.php';
 ?>
