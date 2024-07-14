@@ -1,34 +1,49 @@
+
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 require_once '../functions.php';
 require_once '../Database.php';
 
 
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
-    $filmNaslov = $_POST['film'];
+    $movieName = $_POST['naslov'];
+    $movieYear = $_POST['godina'];
+    $movieGenre = $_POST['zanr_id'];
+    $moviePrice = $_POST['cjenik_id'];
+    
 
     
     $db = new Database();
-
-    // check if name already exsists in db
-    $sql = "SELECT id FROM filmovi WHERE naslov = ?";
-    $count = $db->query($sql, [$filmNaslov]);
-
-    if(!empty($count)){
-        die("naslov $filmNaslov vec postoji u nasoj bazi!");
-    }
     
-    $sql = "INSERT INTO filmovi (naslov) VALUES (:naslov)";
+    // provjera jel postoji u bazi - po naslovu
+    $sql = "SELECT id FROM filmovi WHERE naslov = ?";
+    $count = $db->query($sql, [$movieName]);
+
+    if (!empty($count)) {
+        die("Film naslova ( $movieName ) vec postoji u bazi!");
+    }
+
+    // ubacivanje u bazu
+    $sql = "INSERT INTO filmovi (naslov, godina) VALUES (:naslov, :godina, :zanr_id, :cjenik_id)";
 
     try {
-        $success = $db->query($sql, ['ime' => $filmNaslov]);
+        $success = $db->query($sql, [
+            'naslov' => $movieName,
+            'godina' => $movieYear,
+            'zanr_id' => $movieGenre,
+            'cjenik_id' => $moviePrice
+        ]);
     } catch (\Throwable $th) {
         throw $th;
     }
 
-    http_response_code(200);
-    header('Location:/controllers/movies.php');
+    
+        http_response_code(200);
+        header('Location:/controllers/movies.php');
 }
 
 require '../views.file/movies-create.view.php';
@@ -73,18 +88,10 @@ require '../views.file/movies-create.view.php';
 
 
 
-
-
-
-
-
-
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // TODO: do a validation!!!
-    $naslovFilma = $_POST['naslov'];
+    $movieName = $_POST['naslov'];
 
     try {
         $pdo = new PDO($dsn, options:$config['options']);
@@ -94,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare($sql);
 
         $success = $stmt->execute([
-            'ime' => $naslovFilma
+            'naslov' => $movieName
         ]);
     
         if ($success) {

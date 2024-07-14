@@ -20,14 +20,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
     $db = new Database();
     
-    $sql = "SELECT id FROM clanovi WHERE ime = ?";
-    $count = $db->query($sql, [$memberName]);
+    // provjera jel postoji u bazi - po emailu jer je jedinstven
+    $sql = "SELECT id FROM clanovi WHERE email = ?";
+    $count = $db->query($sql, [$memberEmail]);
 
     if (!empty($count)) {
-        die("Ime $memberName vec postoji u nasoj bazi!");
+        die("E-mail $memberEmail vec postoji u nasoj bazi!");
     }
 
-    // Insert the new member into the database
+    // ubacivanje u bazu
     $sql = "INSERT INTO clanovi (ime, prezime, adresa, telefon, email, clanski_broj) VALUES (:ime, :prezime, :adresa, :telefon, :email, :clanski_broj)";
 
     try {
@@ -38,18 +39,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             'telefon' => $memberPhone,
             'email' => $memberEmail,
             'clanski_broj' => $memberID
-
         ]);
     } catch (\Throwable $th) {
         throw $th;
     }
 
-    if ($success) {
+    
         http_response_code(200);
-        header('Location:members.php');
-    } else {
-        die('Spremanje člana nije uspjelo! Molimo pokušajte ponovo.');
-    }
+        header('Location:/controllers/members.php');
 }
 
 require '../views.file/members-create.view.php';
@@ -103,17 +100,17 @@ require '../views.file/members-create.view.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // TODO: do a validation!!!
-    $memberName = $_POST['ime'];
+    $memberEmail = $_POST['ime'];
 
     try {
         $pdo = new PDO($dsn, options:$config['options']);
     
-        $sql = "INSERT INTO clanovi (ime) VALUES (:ime)";
+        $sql = "INSERT INTO clanovi (email) VALUES (:email)";
     
         $stmt = $pdo->prepare($sql);
 
         $success = $stmt->execute([
-            'ime' => $memberName
+            'ime' => $memberEmail
         ]);
     
         if ($success) {
