@@ -16,7 +16,7 @@
             <label for="godina" class="mt-1">Godina</label>
         </div>
         <div class="">
-            <input type="number" min="1900" max="2099" step="1" value="2016" class="form-control" id="godina" name="godina"/>
+            <input type="number" min="1900" max="2099" step="1" value="2024" class="form-control" id="godina" name="godina"/>
         </div>
 
         <div class="">
@@ -24,6 +24,7 @@
         </div>
         <div class="">
         <select name="zanr_id" id="zanr_id">
+            <option value="" disabled selected>Odaberi žanr:</option>
             <option value="1">Akcija</option>
             <option value="9">Dokumentarni</option>
             <option value="3">Drama</option>
@@ -35,18 +36,6 @@
             <option value="7">Triler</option>
         </select>
         </div>
-
-        <!-- <div class="col-auto">
-            <label for="hit" class="mt-1">Hit</label>
-        </div>
-        <div class="">
-        <select name="tip_filma" id="tip_filma">
-            <option value="" disabled selected>Odaberi:</option>
-            <option value="Hit">Hit</option>
-            <option value="Ne-hit">Ne-hit</option>
-            <option value="Stari">Stari</option>
-        </select>
-        </div> -->
        
         <div class="col-auto">
             <label for="cijena" class="mt-1">Cijena</label>
@@ -54,9 +43,9 @@
         <div class="">
         <select name="cjenik_id" id="cjenik_id">
             <option value="" disabled selected>Odaberi cijenu:</option>
-            <option value="1">5</option>
-            <option value="2">3</option>
-            <option value="3">1.5</option>
+            <option value="1">Hit - 5.00 €</option>
+            <option value="2">Ne-hit - 3.00 €</option>
+            <option value="3">Stari - 1.50 €</option>
         </select>
         </div>
         <div class="col-auto">

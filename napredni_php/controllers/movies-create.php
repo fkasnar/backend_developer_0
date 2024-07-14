@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     // ubacivanje u bazu
-    $sql = "INSERT INTO filmovi (naslov, godina) VALUES (:naslov, :godina, :zanr_id, :cjenik_id)";
+    $sql = "INSERT INTO filmovi (naslov, godina, zanr_id, cjenik_id) VALUES (:naslov, :godina, :zanr_id, :cjenik_id)";
 
     try {
         $success = $db->query($sql, [
@@ -115,5 +115,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . $e->getMessage());
     }
 }else {
-    require '../views/movies-create.view.php';
+    require '../views.file/movies-create.view.php';
 }
