@@ -1,4 +1,4 @@
-<?php include_once '/var/www/backend_developer_0/napredni_php/partials/header.php' ?>
+<?php include_once '/var/www/backend_developer_0/napredni_php/views.file/partials/header.php' ?>
 
 <main class="container my-3 d-flex flex-column flex-grow-1">
 <div class="title flex-between">

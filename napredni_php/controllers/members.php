@@ -43,5 +43,5 @@ if (count($members) === 0) {
 
 $pageTitle = 'Members';
 
-require '../views-file/members.view.php';
+require '../views.file/members.view.php';
 ?>

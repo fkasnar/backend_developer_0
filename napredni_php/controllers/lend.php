@@ -63,5 +63,5 @@ if (count($lends) === 0) {
 
 $pageTitle = 'Posudbe';
 
-require 'lend.view.php';
+require '../views.file/lend.view.php';
 ?>

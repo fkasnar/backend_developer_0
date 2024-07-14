@@ -30,7 +30,7 @@ if (count($copies) === 0) {
 
 $pageTitle = 'Broj primjeraka';
 
-require 'copies.view.php';
+require '../views.file/copies.view.php';
 ?>
 
 

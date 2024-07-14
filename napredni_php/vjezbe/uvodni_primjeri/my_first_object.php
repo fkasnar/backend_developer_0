@@ -34,8 +34,6 @@ class Korisnik {
     private function seUclanjuje(){
         echo 'Korisnik je uclanjen ';
     }
-
-
 }
 
 $tena = new Korisnik();
@@ -52,6 +50,5 @@ $korisnik = new Korisnik();
 $korisnik->ime = 'Aleksandar';
 $korisnik->spol = 'Musko';
 $korisnik->posudjujeFilm();
-
 
 // dd($korisnik);
