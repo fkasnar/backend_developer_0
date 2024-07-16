@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+ 
+    
+
+
+    <title>Form in Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <table>
+            <tr>
+                <td><label for="name">Ime: </label></td>
+                <td><input type="text" name="name" id="name" placeholder="Filip" autocomplete="on" required autofocus></td>
+            </tr>
+            <tr>
+                <td><label for="surname">Prezime: </label></td>
+                <td><input type="text" name="lname" id="lname" placeholder="Kašnar" autocomplete="on" required autofocus></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email: </label></td>
+                <td><input type="email" name="email" id="email" placeholder="Unesite svoju email adresu" autocomplete="on" required autofocus></td>
+            </tr>
+            <tr>
+                <td><label for="country">Država:</label></td>
+                <td>
+                    <select id="country" name="country">
+                        <option value="" disabled selected>Odaberi državu:</option>
+                        <option value="AL">Albania</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AM">Armenia</option>
+                        <option value="AT">Austria</option>
+                        <option value="AZ">Azerbaijan</option>
+                        <option value="BY">Belarus</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BA">Bosnia and Herzegovina</option>
+                        <option value="BG">Bulgaria</option>
+                        <option value="HR">Croatia</option>
+                        <option value="CY">Cyprus</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="DK">Denmark</option>
+                        <option value="EE">Estonia</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GE">Georgia</option>
+                        <option value="DE">Germany</option>
+                        <option value="GR">Greece</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IS">Iceland</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IT">Italy</option>
+                        <option value="KZ">Kazakhstan</option>
+                        <option value="LV">Latvia</option>
+                        <option value="LI">Liechtenstein</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MK">North Macedonia</option>
+                        <option value="MT">Malta</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Spol:</td>
+                <td>
+                    <input type="radio" id="male" name="gender" value="Muški">
+                    <label for="male">Muški</label>
+                    <input type="radio" id="female" name="gender" value="Ženski">
+                    <label for="female">Ženski</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Zanima me:</td>
+                <td>
+                    <input type="checkbox" id="swimming" name="interest" value="Plivanje">
+                    <label for="swimming">Plivanje</label>
+                    <input type="checkbox" id="climbing" name="interest" value="Penjanje">
+                    <label for="climbing">Penjanje</label>
+                    <input type="checkbox" id="programming" name="interest" value="Programiranje">
+                    <label for="programming">Programiranje</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;"><input type="submit" value="Pošalji"></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

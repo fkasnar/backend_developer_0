@@ -1,0 +1,67 @@
+DROP DATABASE IF EXISTS library;
+
+CREATE DATABASE IF NOT EXISTS library DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+USE library;
+
+
+CREATE TABLE IF NOT EXISTS members (
+    name VARCHAR(100) NOT NULL,
+    surname VARCHAR(100) NOT NULL,
+    userID INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    contact VARCHAR(12),
+    membershipActive BOOLEAN
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS memberCard (
+    userID INT UNSIGNED NOT NULL,
+    FOREIGN KEY (userID) REFERENCES members(userID),
+    dateIssued DATE NOT NULL,
+    expiryDate DATE NOT NULL,
+    IDCardNumber VARCHAR(12) NOT NULL UNIQUE,
+    PRIMARY KEY (userID)
+) ENGINE=InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS genre (
+    bookGenreID INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    genreName VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS book (
+    bookID INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    isbn13 VARCHAR(13) NOT NULL,
+    bookGenreID INT UNSIGNED NOT NULL,
+    bookTitle VARCHAR(100) NOT NULL,
+    FOREIGN KEY (bookGenreID) REFERENCES genre(bookGenreID)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS bookCopy (
+    bookID INT UNSIGNED NOT NULL,
+    FOREIGN KEY (bookID) REFERENCES book(bookID),
+    stock INT NOT NULL,
+    PRIMARY KEY (bookID)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS borrows (
+    borrowID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    userID INT UNSIGNED,
+    FOREIGN KEY (userID) REFERENCES members(userID),
+    bookID INT UNSIGNED,
+    FOREIGN KEY (bookID) REFERENCES book(bookID),
+    bookGenreID INT UNSIGNED,
+    FOREIGN KEY (bookGenreID) REFERENCES genre(bookGenreID),
+    dateBorrowed DATE NOT NULL,
+    returnDateLimit DATE NOT NULL,
+    late BOOLEAN
+) ENGINE=InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS fee (
+    borrowID INT NOT NULL,
+    FOREIGN KEY (borrowID) REFERENCES borrows(borrowID),
+    daysLate INT,
+    finePerDay INT,
+    fineAmount INT,
+    feeID INT AUTO_INCREMENT NOT NULL PRIMARY KEY
+) ENGINE=InnoDB;
