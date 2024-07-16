@@ -23,4 +23,4 @@ napraviti members-create.php koristeci najblje prakse sa zadnjeg predavanja
 napraviti members.view.php po uzoru na genres.view.php
 
 ### Zadaca 16.07.2024
-napraviti members i movies po uzoru na predavanje sa custom rutama i kontrolerima i pogledima svrstanim po folderima
+napraviti members i movies po uzoru na predavanje sa custom rutama i kontrolerima i pogledima svrstanim po folderima.
