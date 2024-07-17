@@ -20,6 +20,6 @@ $genres = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_close($connection);
 
-require '../views.file/genres.view.php';
+require '../views/genres.view.php';
 
 

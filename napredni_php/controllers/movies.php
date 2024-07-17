@@ -48,5 +48,5 @@ if (count($movies) === 0) {
 
 $pageTitle = 'Movies';
 
-require '../views.file/movies.view.php';
+require '../views/movies.view.php';
 ?>

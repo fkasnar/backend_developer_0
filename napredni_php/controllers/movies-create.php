@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         header('Location:/controllers/movies.php');
 }
 
-require '../views.file/movies-create.view.php';
+require '../views/movies-create.view.php';
 
 
 

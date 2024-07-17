@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         header('Location:/controllers/members.php');
 }
 
-require '../views.file/members-create.view.php';
+require '../views/members-create.view.php';
 
 
 

@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     header('Location:/controllers/genres.php');
 }
 
-require '../views.file/genre-create.view.php';
+require '../views/genre-create.view.php';
 
 
 
