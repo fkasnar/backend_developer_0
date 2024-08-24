@@ -1,27 +1,30 @@
 <?php
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    
-    $zanrName = $_POST['zanr'];
+use Core\Database;
+use Core\Validator;
 
-    $db = new Database();
-
-    $sql = "SELECT id FROM zanrovi WHERE ime = ?";
-    $count = $db->query($sql, [$zanrName]);
-
-    if(!empty($count)){
-        die("Ime $zanrName vec postoji u nasoj bazi!");
-    }
-    
-    $sql = "INSERT INTO zanrovi (ime) VALUES (:ime)";
-
-    try {
-        $db->query($sql, ['ime' => $zanrName]);
-    } catch (\Throwable $th) {
-        throw $th;
-    }
-
-    redirect('genres');
-} else {
+if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     dd('Unsupported method!');
 }
+
+$postData = [
+    'ime' => $_POST['zanr'] ?? null
+];
+
+$rules = [
+    'ime' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+];
+
+$form = new Validator($rules, $postData);
+if ($form->notValid()){
+    dd($form->errors());
+}
+
+$data = $form->getData();
+
+$db = Database::get();
+
+$sql = "INSERT INTO zanrovi (ime) VALUES (:ime)";
+$db->query($sql, ['ime' => $data['ime']]);
+
+redirect('genres');

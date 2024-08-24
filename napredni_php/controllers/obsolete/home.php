@@ -1,6 +1,5 @@
-<?php
 
-use Core\Database;
+<?php
 
 const QUERY = [
     'popularMovies'
@@ -51,10 +50,10 @@ const QUERY = [
         ORDER BY genre_name, movie_title"
 ];
 
-$db = Database::get();
+$db = new Database();
 
-$popularMovies = $db->query(QUERY['popularMovies'])->all();
-$moviesWithGenres = $db->query(QUERY['moviesWithGenres'])->all();
+$popularMovies = $db->query(QUERY['popularMovies']);
+$moviesWithGenres = $db->query(QUERY['moviesWithGenres']);
 $moviesByGenre = [];
 
 foreach ($moviesWithGenres as $key => $movie) {
@@ -69,4 +68,4 @@ foreach ($moviesWithGenres as $key => $movie) {
     }
 }
 
-include base_path('views/home.view.php');
+include '../views/home.view.php';

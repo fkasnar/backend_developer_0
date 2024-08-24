@@ -7,23 +7,43 @@
 
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="/" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/' ? 'active' : '' ?>" aria-current="page">
+            <a href="/" class="nav-link text-white link-primary <?= setActiveCalss("/") ?>" <?= setAriaCurent("/") ?>>
                 <i class="bi bi-house me-2"></i>Home
             </a>
         </li>
         <li class="nav-item">
-            <a href="/members" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/members' ? 'active' : '' ?>" aria-current="page">
+            <a href="/dashboard" class="nav-link text-white link-primary <?= setActiveCalss("dashboard") ?>" <?= setAriaCurent("dashboard") ?>>
+                <i class="bi bi-clipboard-pulse me-2"></i>Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/rentals" class="nav-link text-white link-primary <?= setActiveCalss("rentals") ?>" <?= setAriaCurent("rentals") ?>>
+                <i class="bi bi-credit-card me-2"></i>Posudbe
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/members" class="nav-link text-white link-primary <?= setActiveCalss("members") ?>" <?= setAriaCurent("members") ?>>
                 <i class="bi bi-person-circle me-2"></i>Clanovi
             </a>
         </li>
         <li class="nav-item">
-            <a href="/genres" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/genres' ? 'active' : '' ?>" aria-current="page">
+            <a href="/genres" class="nav-link text-white link-primary <?= setActiveCalss("genres") ?>" <?= setAriaCurent("genres") ?>>
                 <i class="bi bi-camera-reels me-2"></i>Zanrovi
             </a>
         </li>
         <li class="nav-item">
-            <a href="/movies" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/movies' ? 'active' : '' ?>" aria-current="page">
+            <a href="/movies" class="nav-link text-white link-primary <?= setActiveCalss("movies") ?>" <?= setAriaCurent("movies") ?>>
                 <i class="bi bi-film me-2"></i>Filmovi
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/prices" class="nav-link text-white link-primary <?= setActiveCalss("prices") ?>" <?= setAriaCurent("prices") ?>>
+                <i class="bi bi-currency-euro me-2"></i>Cjenik
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/formats" class="nav-link text-white link-primary <?= setActiveCalss("formats") ?>" <?= setAriaCurent("formats") ?>>
+                <i class="bi bi-disc me-2"></i>Mediji
             </a>
         </li>
     </ul>
