@@ -17,7 +17,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/rentals" class="nav-link text-white link-primary <?= setActiveCalss("rentals") ?>" <?= setAriaCurent("rentals") ?>>
+            <a href="/borrow" class="nav-link text-white link-primary <?= setActiveCalss("borrow") ?>" <?= setAriaCurent("rentals") ?>>
                 <i class="bi bi-credit-card me-2"></i>Posudbe
             </a>
         </li>
@@ -42,7 +42,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/formats" class="nav-link text-white link-primary <?= setActiveCalss("formats") ?>" <?= setAriaCurent("formats") ?>>
+            <a href="/media" class="nav-link text-white link-primary <?= setActiveCalss("media") ?>" <?= setAriaCurent("media") ?>>
                 <i class="bi bi-disc me-2"></i>Mediji
             </a>
         </li>
