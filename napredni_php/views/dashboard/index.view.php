@@ -1,15 +1,43 @@
 <?php include_once base_path('views/partials/header.php'); ?>
 
+
 <main class="container my-3 d-flex flex-column flex-grow-1">
-    <div class="title flex-between">
+    <div>
         <h2>Nova posudba</h2>
+
+<hr><br>
+<form class="row g-3 mt-3" action="/dashboard/store" method="POST">
+        <div class="flex-between">
+        <select class="form-select" aria-label="Default select example" name="acopy">
+        <option selected="">Dostupne kopije filmova</option>
+        <?php foreach ($availableCopy as $acopy): ?>
+                    <option value="<?= $acopy['spojeni_podaci'] ?>"><?= $acopy['spojeni_podaci'] ?></option>
+                <?php endforeach ?>
+            </select>
+            
+
+<div class="col-md-4">
+    <select class="form-select " name="member" id="member">
+        <option selected="">Odaberite Clana</option>
+        <?php foreach ($members as $member): ?>
+            <option value="<?= $member['id'] ?>"><?= $member['ime'] . " " .  $member['prezime'] . "  " . $member['clanski_broj'] ?></option>
+                <?php endforeach ?>
+                    <option value="1">CLAN12345 - Ivan Horvat</option>
+            </select>
+    </div>   
+
         <div class="action-buttons">
             <a href="/dashboard/create" type="submit" class="btn btn-primary">Dodaj</a>
         </div>
     </div>
 
-    <hr>
-<br><br><br><br>
+    </form>
+
+
+
+
+    
+<br><br><br>
     <h2>Aktivne posudbe</h2>
     
     <table class="table table-striped">
@@ -43,6 +71,7 @@
             <?php endforeach ?>
         </tbody>
     </table>
+
 </main>
 
 <?php include_once base_path('views/partials/footer.php'); ?>

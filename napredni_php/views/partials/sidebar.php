@@ -23,12 +23,12 @@
         </li>
         <li class="nav-item">
             <a href="/members" class="nav-link text-white link-primary <?= setActiveCalss("members") ?>" <?= setAriaCurent("members") ?>>
-                <i class="bi bi-person-circle me-2"></i>Clanovi
+                <i class="bi bi-person-circle me-2"></i>Članovi
             </a>
         </li>
         <li class="nav-item">
             <a href="/genres" class="nav-link text-white link-primary <?= setActiveCalss("genres") ?>" <?= setAriaCurent("genres") ?>>
-                <i class="bi bi-camera-reels me-2"></i>Zanrovi
+                <i class="bi bi-camera-reels me-2"></i>Žanrovi
             </a>
         </li>
         <li class="nav-item">

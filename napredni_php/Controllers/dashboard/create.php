@@ -4,30 +4,29 @@ use Core\Database;
 
 $db = Database::get();
 
-
-$sql = "SELECT 
-    p.id AS posudba_id,
-    p.datum_posudbe,
-    c.id AS clan_id,
-    c.ime,
-    c.prezime,
-    f.naslov AS film,
-    cj.cijena
-FROM 
-    posudba p
-JOIN 
-    clanovi c ON p.clan_id = c.id
-JOIN 
-    posudba_kopija pk ON p.id = pk.posudba_id
-JOIN 
-    kopija k ON pk.kopija_id = k.id
-JOIN 
-    filmovi f ON k.film_id = f.id
-JOIN 
-    cjenik cj ON f.cjenik_id = cj.id
-WHERE 
-    p.datum_povrata IS NULL;";
+    // dostupne kopije filmova
+    $sql = "SELECT
+        CONCAT(
+            'Tip: ', m.tip, ', ',
+            'Naslov: ', f.naslov, ', ',
+            'Godina: ', f.godina
+        ) AS spojeni_podaci
+    FROM
+        filmovi f
+    JOIN
+        kopija k ON f.id = k.film_id
+    JOIN
+        mediji m ON k.medij_id = m.id
+    WHERE
+        k.dostupan = 1
+    GROUP BY
+        f.id, m.tip";
     
-$activeBorrow = $db->query($sql)->all();
+    $availableCopy = $db->query($sql)->all();
 
-require base_path('views/dashboard/create.view.php');
+    // clanovi
+    $sql = "SELECT * FROM clanovi;";
+    $members = $db->query($sql)->all();
+
+
+require base_path('views/dashboard/index.view.php');
