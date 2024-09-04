@@ -1,23 +1,45 @@
 <?php
 
+use Controllers\genres\GenresController;
+use Controllers\members\MembersController;
+use Controllers\HomeController;
+use Controllers\DashboardController;
+use Controllers\LoginController;
+use Controllers\RegisterController;
+
+$router->get('/', [HomeController::class, 'index']);
+$router->get('/dashboard', [DashboardController::class, 'index']);
+
+$router->get('/register', [RegisterController::class, 'create']);
+$router->post('/register', [RegisterController::class, 'store']);
+
+$router->get('/login', [LoginController::class, 'create']);
+$router->post('/login', [LoginController::class, 'store']);
+$router->post('/logout', [LoginController::class, 'logout']);
+
+$router->get('/genres', [GenresController::class, 'index']);
+$router->get('/genres/show', [GenresController::class, 'show']);
+$router->get('/genres/create', [GenresController::class, 'create']);
+$router->post('/genres', [GenresController::class, 'store']);
+$router->get('/genres/edit', [GenresController::class, 'edit']);
+$router->patch('/genres', [GenresController::class, 'update']);
+$router->delete('/genres/destroy', [GenresController::class, 'destroy']);
+
+$router->get('/members',            [MembersController::class, 'index']);
+$router->get('/members/show',       [MembersController::class, 'show']);
+$router->get('/members/create',     [MembersController::class, 'create']);
+$router->post('/members/store',     [MembersController::class, 'store']);
+$router->get('/members/edit',       [MembersController::class, 'edit']);
+$router->patch('/members/update',   [MembersController::class, 'update']);
+$router->delete('/members/destroy', [MembersController::class, 'destroy']);
+
+
+
+
+
 return [
     '/'                 => 'Controllers/home.php',
-
-    '/members'          => 'Controllers/members/index.php',
-    '/members/show'     => 'Controllers/members/show.php',
-    '/members/create'   => 'Controllers/members/create.php',
-    '/members/store'    => 'Controllers/members/store.php',
-    '/members/edit'     => 'Controllers/members/edit.php',
-    '/members/update'   => 'Controllers/members/update.php',
-    '/members/destroy'  => 'Controllers/members/destroy.php',
-
-    '/genres'           => 'Controllers/genres/index.php',
-    '/genres/show'      => 'Controllers/genres/show.php',
-    '/genres/create'    => 'Controllers/genres/create.php',
-    '/genres/store'     => 'Controllers/genres/store.php',
-    '/genres/edit'      => 'Controllers/genres/edit.php',
-    '/genres/update'    => 'Controllers/genres/update.php',
-    '/genres/destroy'   => 'Controllers/genres/destroy.php',
+    '/dashboard'        => 'Controllers/dashboard/index.php',
 
     '/movies'           => 'Controllers/movies/index.php',
     '/movies/show'      => 'Controllers/movies/show.php',
@@ -27,35 +49,13 @@ return [
     '/movies/update'    => 'Controllers/movies/update.php',
     '/movies/destroy'   => 'Controllers/movies/destroy.php',
 
-    '/prices'           => 'Controllers/prices/index.php',
-    '/prices/show'      => 'Controllers/prices/show.php',
-    '/prices/create'    => 'Controllers/prices/create.php',
-    '/prices/store'     => 'Controllers/prices/store.php',
-    '/prices/edit'      => 'Controllers/prices/edit.php',
-    '/prices/update'    => 'Controllers/prices/update.php',
-    '/prices/destroy'   => 'Controllers/prices/destroy.php',
+    '/formats'          => 'Controllers/formats/index.php',
+    '/formats/show'     => 'Controllers/formats/show.php',
+    '/formats/create'   => 'Controllers/formats/create.php',
+    '/formats/store'    => 'Controllers/formats/store.php',
+    '/formats/edit'     => 'Controllers/formats/edit.php',
+    '/formats/update'   => 'Controllers/formats/update.php',
+    '/formats/destroy'  => 'Controllers/formats/destroy.php',
 
-    '/media'           => 'Controllers/media/index.php',
-    '/media/show'      => 'Controllers/media/show.php',
-    '/media/create'    => 'Controllers/media/create.php',
-    '/media/store'     => 'Controllers/media/store.php',
-    '/media/edit'      => 'Controllers/media/edit.php',
-    '/media/update'    => 'Controllers/media/update.php',
-    '/media/destroy'   => 'Controllers/media/destroy.php',
-
-    '/borrow'           => 'Controllers/borrow/index.php',
-    '/borrow/show'      => 'Controllers/borrow/show.php',
-    '/borrow/create'    => 'Controllers/borrow/create.php',
-    '/borrow/store'     => 'Controllers/borrow/store.php',
-    '/borrow/edit'      => 'Controllers/borrow/edit.php',
-    '/borrow/update'    => 'Controllers/borrow/update.php',
-    '/borrow/destroy'   => 'Controllers/borrow/destroy.php',
-
-    '/dashboard'           => 'Controllers/dashboard/index.php',
-    '/dashboard/show'      => 'Controllers/dashboard/show.php',
-    '/dashboard/create'    => 'Controllers/dashboard/create.php',
-    '/dashboard/store'     => 'Controllers/dashboard/store.php',
-    '/dashboard/edit'      => 'Controllers/dashboard/edit.php',
-    '/dashboard/update'    => 'Controllers/dashboard/update.php',
-    '/dashboard/destroy'   => 'Controllers/dashboard/destroy.php',
+    '/rentals/destroy'  => 'Controllers/rentals/destroy.php',
 ];
