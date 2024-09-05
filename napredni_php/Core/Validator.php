@@ -178,4 +178,12 @@ class Validator
         //     $this->addError($field, "Polje $field mora sadrzavati bar jedan poseban znak i jedno veliko slovo");
         // }
     }
+
+    private function date($userInput, $field)
+    {
+        $d = \DateTime::createFromFormat('Y-m-d', $userInput);
+        if (!$d || $d->format('Y-m-d') !== $userInput) {
+            $this->addError($field, "Polje $field mora biti datum u formatu Y-m-d!");
+        }
+    } 
 }

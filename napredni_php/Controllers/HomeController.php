@@ -55,7 +55,7 @@ class HomeController
             ORDER BY genre_name, movie_title"
     ];
 
-    public function index()
+    public function index($subDir)
     {
         $db = Database::get();
 

@@ -4,12 +4,17 @@
     <div class="title flex-between">
         <h1>Zanrovi</h1>
         <div class="action-buttons">
-            <a href="/genres/create" type="submit" class="btn btn-primary">Dodaj novi</a>
+            <a href="<?= $subDir ?>/genres/create" type="submit" class="btn btn-primary">Dodaj novi</a>
         </div>
     </div>
 
     <hr>
-    
+    <?php if (!empty($message)): ?>
+        <div class="alert alert-<?= $message['type'] ?> alert-dismissible fade show" role="alert">
+            <?= $message['message'] ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -22,10 +27,10 @@
             <?php foreach ($genres as $genre): ?>
                 <tr>
                     <td><?= $genre['id'] ?></td>
-                    <td><a href="/genres/show?id=<?= $genre['id'] ?>"><?= $genre['ime'] ?></a></td>
+                    <td><a href="<?= $subDir ?>/genres/show?id=<?= $genre['id'] ?>"><?= $genre['ime'] ?></a></td>
                     <td>
-                        <a href="/genres/edit?id=<?= $genre['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Zanr"><i class="bi bi-pencil"></i></a>
-                        <form id="delete-form" class="hidden d-inline" method="POST" action="/genres/destroy">
+                        <a href="<?= $subDir ?>/genres/edit?id=<?= $genre['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Zanr"><i class="bi bi-pencil"></i></a>
+                        <form id="delete-form" class="hidden d-inline" method="POST" action="<?= $subDir ?>/genres/destroy">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="id" value="<?= $genre['id'] ?>">
                             <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Obrisi Zanr"><i class="bi bi-trash"></i></button>

@@ -5,17 +5,25 @@ namespace Controllers;
 use Core\Database;
 use Core\Session;
 use Core\Validator;
+use Core\ResourceInUseException;
 
 class RegisterController
 {
-    public function create()
+    private Database $db;
+
+    public function __construct()
+    {
+        $this->db = Database::get();
+    }
+
+    public function create($subDir)
     {
         $pageTitle = 'Register';
         $errors = Session::get('errors');
         require_once base_path('views/register/create.view.php');
     }
 
-    public function store()
+    public function store($subDir)
     {
         // validirati podatke iz forme
         $rules = [
@@ -26,8 +34,6 @@ class RegisterController
             'email' => ['required', 'email', 'max:50', 'unique:clanovi'],
             'password' => ['required', 'password', 'min:3', 'max:255']
         ];
-        
-        $db = Database::get();
 
         $form = new Validator($rules, $_POST);
         if ($form->notValid()){
@@ -37,16 +43,16 @@ class RegisterController
         
         $data = $form->getData();
 
-        // krerati novog membera
+        // kreirati novog membera
         $sql = "SELECT clanski_broj FROM clanovi ORDER BY id DESC LIMIT 1";
-        $clanskiBroj = $db->query($sql)->find();
+        $clanskiBroj = $this->db->query($sql)->find();
         $clanskiBroj = str_replace('CLAN','', $clanskiBroj['clanski_broj']);
         $clanskiBroj = intval($clanskiBroj);
         $clanskiBroj = 'CLAN' . ++$clanskiBroj;
 
         $sql = "INSERT INTO clanovi (ime, prezime, adresa, telefon, email, clanski_broj, password)
             VALUES (:ime, :prezime, :adresa, :telefon, :email, :clanski_broj, :pwd)";
-        $db->query($sql, [
+        $this->db->query($sql, [
             'ime' => $data['ime'],
             'prezime' => $data['prezime'],
             'adresa' => $data['adresa'],
@@ -57,29 +63,17 @@ class RegisterController
         ]);
 
         //ulogiraj clana
-        $this->login($data);
+
+        $login = new LoginController;
+        $login->login($data);
+
 
         Session::flash('message', [
             'type' => 'success',
-            'message' => "Uspjesno kreiran vas korisnicki racun"
+            'message' => "Uspjesno kreiran korisnicki racun."
         ]);
 
-        redirect('dashboard');
+         redirect(substr_replace($subDir, '', 0, 1) . '/dashboard');
     }
 
-    public function login($data)
-    {
-        Session::put('user', [
-            'ime' => $data['ime'],
-            'prezime' => $data['prezime'],
-            'email' => $data['email'],
-        ]);
-
-        session_regenerate_id();
-    }
-
-    public function logout()
-    {
-        Session::destroy();
-    }
 }

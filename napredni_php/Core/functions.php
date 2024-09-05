@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 function dump($var)
 {
@@ -39,6 +41,26 @@ function goBack(): void
     exit();
 }
 
+function formatPrice($price)
+{
+    $formatted = $price < 0 ? number_format(0, 2) : number_format($price, 2);
+    return "$formatted &euro;";
+}
+
+function validationClass($errors, $field): ?string
+{
+    if (empty($errors)) {
+        return null;
+    }
+
+    return isset($errors[$field]) ? 'is-invalid' : 'is-valid';
+}
+
+function validationFeedback($errors, $field): ?string
+{
+    return isset($errors[$field]) ? "<span class='invalid-feedback'>{$errors[$field]}</span>" : null;
+}
+
 //TODO: move to a Helper calss next 3 functions
 function isCurrent(string $link): bool
 {
@@ -53,7 +75,7 @@ function isCurrent(string $link): bool
     return $route === $link;
 }
 
-function setActiveCalss(string $link): string
+function setActiveClass(string $link): string
 {
     return isCurrent($link) ? 'active' : '';
 }

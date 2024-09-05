@@ -33,8 +33,8 @@
             <input type="text" class="form-control" id="clanski_broj" name="clanski_broj" value="<?= $member['clanski_broj'] ?>" disabled>
         </div>
         <div class="col-12 d-flex justify-content-between">
-            <a href="/members" class="btn btn-primary mb-3">Povratak</a>
-            <a href="/members/edit?id=<?= $member['id'] ?>" class="btn btn-info mb-3">Uredi</a>
+            <a href="<?= $subDir ?>/members" class="btn btn-primary mb-3">Povratak</a>
+            <a href="<?= $subDir ?>/members/edit?id=<?= $member['id'] ?>" class="btn btn-info mb-3">Uredi</a>
         </div>
     </form>
 </main>

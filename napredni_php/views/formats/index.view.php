@@ -4,12 +4,17 @@
     <div class="title flex-between">
         <h1>Mediji</h1>
         <div class="action-buttons">
-            <a href="/formats/create" type="submit" class="btn btn-primary">Dodaj novi</a>
+            <a href="<?= $subDir ?>/formats/create" type="submit" class="btn btn-primary">Dodaj novi</a>
         </div>
     </div>
 
     <hr>
-    
+    <?php if (!empty($message)): ?>
+        <div class="alert alert-<?= $message['type'] ?> alert-dismissible fade show" role="alert">
+            <?= $message['message'] ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -20,24 +25,25 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($formats as $format): ?>
+            <?php foreach ($mediji as $medij): ?>
                 <tr>
-                    <td><?= $format['id'] ?></td>
-                    <td><a href="/formats/show?id=<?= $format['id'] ?>"><?= $format['tip'] ?></a></td>
-                    <td><?= $format['koeficijent'] ?></td>
                     <td>
-                        <a href="/formats/edit?id=<?= $format['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Medij"><i class="bi bi-pencil"></i></a>
-                        <form action="/formats/destroy" method="POST" class="d-inline">
+                        <a href="<?= $subDir ?>/formats/show?id=<?= $medij['id'] ?>"><?= $medij['id'] ?></a>
+                    </td>
+                    <td><?= $medij['tip'] ?></td>
+                    <td><?= $medij['koeficijent'] ?></td>
+                    <td>
+                        <a href="<?= $subDir ?>/formats/edit?id=<?= $medij['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit medij"><i class="bi bi-pencil"></i></a>
+                        <form action="<?= $subDir ?>/formats/destroy" method="POST" class="d-inline">
                             <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="id" value="<?= $format['id'] ?>">
-                            <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Obrisi Medij"><i class="bi bi-trash"></i></button>
+                            <input type="hidden" name="id" value="<?= $medij['id'] ?>">
+                            <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete medij"><i class="bi bi-trash"></i></button>
                         </form>
                     </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
     </table>
-
 </main>
 
 <?php include_once base_path('views/partials/footer.php'); ?>
