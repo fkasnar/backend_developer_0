@@ -13,16 +13,16 @@
             <input type="text" class="form-control" id="tip_filma" name="tip_filma" value="<?= $price['tip_filma'] ?>" disabled>
         </div>
         <div class="col-md-6">
-            <label for="cijena" class="form-label">Cijena</label>
+            <label for="cijena" class="form-label">Cijena (€)</label>
             <input type="text" class="form-control" id="cijena" name="cijena" value="<?= $price['cijena'] ?>" disabled>
         </div>
         <div class="col-md-6">
-            <label for="zakasnina_po_danu" class="form-label">Zakasnina po danu</label>
+            <label for="zakasnina_po_danu" class="form-label">Zakasnina po danu (€)</label>
             <input type="text" class="form-control" id="zakasnina_po_danu" name="zakasnina_po_danu" value="<?= $price['zakasnina_po_danu'] ?>" disabled>
         </div>
         <div class="col-12 d-flex justify-content-between">
-            <a href="<?= $subDir ?>/prices" class="btn btn-primary mb-3">Povratak</a>
-            <a href="<?= $subDir ?>/prices/edit?id=<?= $price['id'] ?>" class="btn btn-info mb-3">Uredi</a>
+            <a href="/prices" class="btn btn-primary mb-3">Povratak</a>
+            <a href="/prices/edit?id=<?= $price['id'] ?>" class="btn btn-info mb-3">Uredi</a>
         </div>
     </form>
 </main>

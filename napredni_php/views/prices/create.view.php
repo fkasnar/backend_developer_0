@@ -7,19 +7,19 @@
         </div>
     </div>
     <hr>
-    <form class="row g-3 mt-3" action="<?= $subDir ?>/prices" method="POST">
+    <form class="row g-3 mt-3" action="/prices" method="POST">
     <div class="col-md-6">
             <label for="tip_filma" class="form-label <?= validationClass($errors, 'tip_filma') ?>">Tip filma</label>
             <input type="text" class="form-control" id="tip_filma" name="tip_filma" placeholder="Tip filma" required>
             <?= validationFeedback($errors, 'tip_filma') ?>
         </div>
         <div class="col-md-6">
-            <label for="cijena" class="form-label <?= validationClass($errors, 'cijena') ?>">Cijena</label>
+            <label for="cijena" class="form-label <?= validationClass($errors, 'cijena') ?>">Cijena (€)</label>
             <input type="text" class="form-control" id="cijena" name="cijena" placeholder="Cijena (€)" required>
             <?= validationFeedback($errors, 'cijena') ?>
         </div>
         <div class="col-md-6">
-            <label for="zakasnina_po_danu" class="form-label <?= validationClass($errors, 'zakasnina_po_danu') ?>">Zakasnina po danu</label>
+            <label for="zakasnina_po_danu" class="form-label <?= validationClass($errors, 'zakasnina_po_danu') ?>">Zakasnina po danu (€) </label>
             <input type="text" class="form-control" id="zakasnina_po_danu" name="zakasnina_po_danu" placeholder="Zakasnina po danu (€)" required>
             <?= validationFeedback($errors, 'zakasnina_po_danu') ?>
         </div>

@@ -5,154 +5,168 @@ namespace Controllers;
 use Core\Database;
 use Core\Session;
 use Core\Validator;
-use Core\ResourceInUseException;
 
 class PricesController
 {
-    private Database $db;
-
+    private $db;
 
     public function __construct()
     {
         $this->db = Database::get();
     }
 
-    public function index($subDir)
+    // Prikaz cijena
+    public function index()
     {
-        $sql = "SELECT * from cjenik ORDER BY id";
-        $prices = $this->db->query($sql)->all();
+        $prices = $this->db->query("SELECT * FROM cjenik ORDER BY id")->all();
         $pageTitle = 'Cjenik';
         $message = Session::get('message');
         require base_path('views/prices/index.view.php');
     }
 
-    public function show($subDir)
+    // Prikaz odabrane cijene
+    public function show()
     {
-        $sql = "SELECT * from cjenik WHERE id = :id";
-        $price = $this->db->query($sql, ['id' => $_GET['id']])->findOrFail();
+        $price = $this->db->query("SELECT * FROM cjenik WHERE id = :id", ['id' => $_GET['id']])->findOrFail();
         $pageTitle = 'Cijena';
-        
         require base_path('views/prices/show.view.php');
     }
 
-    public function edit($subDir)
+    // Uredi cijenu
+    public function edit()
     {
-        $sql = 'SELECT * from cjenik WHERE id = :id';
-        $price = $this->db->query($sql, ['id' => $_GET['id']])->findOrFail();
+        $price = $this->db->query("SELECT * FROM cjenik WHERE id = :id", ['id' => $_GET['id']])->findOrFail();
         $pageTitle = "Uredi cijenu";
         $errors = Session::get('errors');
         require base_path('views/prices/edit.view.php');
     }
 
-    public function update($subDir)
-    {   
-        if (!isset($_POST['id'] )) {
-            abort();
+    // Ažuriraj
+    public function update()
+    {
+        if (!isset($_POST['id'])) {
+            $this->abort();
         }
-        
-        
+
+        // Validacija ispravnog inputa usera
         $rules = [
             'id' => ['required', 'numeric'],
             'tip_filma' => ['required', 'string', 'max:50', 'min:2'],
-            'cijena' => ['required', 'numeric','max:5'],
-            'zakasnina_po_danu' => ['required', 'numeric','max:5']
+            'cijena' => ['required', 'numeric', 'max:5'],
+            'zakasnina_po_danu' => ['required', 'numeric', 'max:5']
         ];
-        
-        $sql = 'SELECT * from cjenik WHERE id = :id';
-        $cijena = $this->db->query($sql, ['id' => $_POST['id']])->findOrFail();
-        
+
+        // Validacija ispravnog inputa usera
         $form = new Validator($rules, $_POST);
-        if ($form->notValid()){
+        if ($form->notValid()) {
             Session::flash('errors', $form->errors());
-            goBack();
+            $this->goBack();
         }
 
         $data = $form->getData();
-        
-        $sql = "UPDATE cjenik SET tip_filma = :tip_filma, cijena = :cijena, zakasnina_po_danu = :zakasnina_po_danu WHERE id = :id";
-        $this->db->query($sql, [
+
+        // Uređivanje cijene u bazi
+        $this->db->query("UPDATE cjenik SET tip_filma = :tip_filma, cijena = :cijena, zakasnina_po_danu = :zakasnina_po_danu WHERE id = :id", [
             'tip_filma' => $data['tip_filma'],
             'cijena' => $data['cijena'],
             'zakasnina_po_danu' => $data['zakasnina_po_danu'],
             'id' => $_POST['id']
         ]);
-        
-        $pageTitle = "Uredi cijenu";
+
+        // Notifikacija success
         Session::flash('message', [
             'type' => 'success',
             'message' => "Cijena uspješno promijenjena"
         ]);
-        redirect(substr_replace($subDir, '', 0, 1) . '/prices');
+        
+        $this->redirect('/prices');
     }
 
-    public function create($subDir)
+    // Kreiraj novu cijenu
+    public function create()
     {
         $pageTitle = 'Nova cijena';
         $errors = Session::get('errors');
-        require base_path('views/prices/create.view.php'); 
+        require base_path('views/prices/create.view.php');
     }
 
-    public function store($subDir)
+    // Spremanje nove cijene
+    public function store()
     {
+        // Validacija ispravnog inputa usera
         $rules = [
             'tip_filma' => ['required', 'string', 'max:50', 'min:2'],
-            'cijena' => ['required', 'numeric','max:5'],
-            'zakasnina_po_danu' => ['required', 'numeric','max:5']
+            'cijena' => ['required', 'numeric', 'max:5'],
+            'zakasnina_po_danu' => ['required', 'numeric', 'max:5']
         ];
-        
-        //TODO: validate the data
-        
+
+        // Validacija ispravnog inputa usera
         $form = new Validator($rules, $_POST);
-        if ($form->notValid()){
+        if ($form->notValid()) {
             Session::flash('errors', $form->errors());
-            goBack();
+            $this->goBack();
         }
-        
+
         $data = $form->getData();
-        
-        $sql = "SELECT id FROM cjenik WHERE tip_filma = :tip_filma";
-        $count = $this->db->query($sql, ['tip_filma' => $data['tip_filma']])->find();
-        
-        if(!empty($count)){
-            die("Tip filma {$data['tip_filma']} vec postoji u nasoj bazi!");
+
+        // Provjera duplih unosa cijena/tipa filma
+        $exists = $this->db->query("SELECT id FROM cjenik WHERE tip_filma = :tip_filma", ['tip_filma' => $data['tip_filma']])->find();
+        if ($exists) {
+            die("Tip filma {$data['tip_filma']} već postoji u bazi.");
         }
-        
-        $sql = "INSERT INTO cjenik (tip_filma, cijena, zakasnina_po_danu) VALUES (:tip_filma, :cijena, :zakasnina_po_danu)";
-        $this->db->query($sql, [
+
+        // Ubacivanje nove cijene u bazu
+        $this->db->query("INSERT INTO cjenik (tip_filma, cijena, zakasnina_po_danu) VALUES (:tip_filma, :cijena, :zakasnina_po_danu)", [
             'tip_filma' => $data['tip_filma'],
             'cijena' => $data['cijena'],
             'zakasnina_po_danu' => $data['zakasnina_po_danu']
         ]);
 
+        // Notifikacija - uspješno
         Session::flash('message', [
             'type' => 'success',
             'message' => "Cijena uspješno kreirana"
         ]);
-        
-        redirect(substr_replace($subDir, '', 0, 1) . '/prices');        
+
+        $this->redirect('/prices');
     }
 
-    public function destroy($subDir)
+    // Brisanje cijene po id-u
+    public function destroy()
     {
-        if (!isset($_POST['id'] )) {
-            abort();
+        if (!isset($_POST['id'])) {
+            $this->abort();
         }
-        
-        $sql = 'SELECT * from cjenik WHERE id = :id';
-        $medij = $this->db->query($sql, ['id' => $_POST['id']])->findOrFail();
-        
-        $sql = "DELETE from cjenik WHERE id = :id";
-        
-        try {
-            $this->db->query($sql, ['id' => $_POST['id']]);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+
+        // Naredba brisanja za bazu
+        $this->db->query("DELETE FROM cjenik WHERE id = :id", ['id' => $_POST['id']]);
+
+        // Notifikacija - uspjeh
         Session::flash('message', [
             'type' => 'success',
             'message' => "Cijena uspješno obrisana"
         ]);
-        redirect(substr_replace($subDir, '', 0, 1) . '/prices');
-     
+
+        $this->redirect('/prices');
+    }
+
+    private function abort()
+    {
+        http_response_code(404);
+        die("Page not found");
+    }
+
+
+    private function redirect($url)
+    {
+        header("Location: $url");
+        exit;
+    }
+
+    // Redirect natrag nakon izvršavanja
+    private function goBack()
+    {
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 }
