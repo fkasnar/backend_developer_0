@@ -1,4 +1,4 @@
-<aside class="d-flex flex-column p-3 text-bg-dark vh-100-min" style="width: 280px;">
+<aside class="d-flex flex-column p-3 text-bg-dark vh-100-min" style="width: 220px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">Videoteka Admin</span>
     </a>
@@ -17,18 +17,18 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/borrow" class="nav-link text-white link-primary <?= setActiveCalss("borrow") ?>" <?= setAriaCurent("rentals") ?>>
+            <a href="/rentals" class="nav-link text-white link-primary <?= setActiveCalss("rentals") ?>" <?= setAriaCurent("rentals") ?>>
                 <i class="bi bi-credit-card me-2"></i>Posudbe
             </a>
         </li>
         <li class="nav-item">
             <a href="/members" class="nav-link text-white link-primary <?= setActiveCalss("members") ?>" <?= setAriaCurent("members") ?>>
-                <i class="bi bi-person-circle me-2"></i>Članovi
+                <i class="bi bi-person-circle me-2"></i>Clanovi
             </a>
         </li>
         <li class="nav-item">
             <a href="/genres" class="nav-link text-white link-primary <?= setActiveCalss("genres") ?>" <?= setAriaCurent("genres") ?>>
-                <i class="bi bi-camera-reels me-2"></i>Žanrovi
+                <i class="bi bi-camera-reels me-2"></i>Zanrovi
             </a>
         </li>
         <li class="nav-item">
@@ -42,7 +42,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/media" class="nav-link text-white link-primary <?= setActiveCalss("media") ?>" <?= setAriaCurent("media") ?>>
+            <a href="/formats" class="nav-link text-white link-primary <?= setActiveCalss("formats") ?>" <?= setAriaCurent("formats") ?>>
                 <i class="bi bi-disc me-2"></i>Mediji
             </a>
         </li>
