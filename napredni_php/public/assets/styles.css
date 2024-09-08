@@ -32,3 +32,8 @@ div.alert {
     margin: 0 auto;
     width: fit-content;
 }
+
+.sidebar_position {
+    position: fixed;
+    top: 5%;
+}
