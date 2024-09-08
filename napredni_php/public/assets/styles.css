@@ -35,5 +35,5 @@ div.alert {
 
 .sidebar_position {
     position: fixed;
-    top: 5%;
+    top: auto;
 }
