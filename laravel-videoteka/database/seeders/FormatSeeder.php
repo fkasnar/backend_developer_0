@@ -2,21 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\Price;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Format;
 
-class PriceSeeder extends Seeder
+class FormatSeeder extends Seeder
 {
-    private const TYPES = ['Hit', 'Ne-hit', 'Stari'];
+    private const FORMATS = ['VHS', 'CD', 'DVD', 'Blu-ray'];
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        foreach (self::TYPES as $type) {
-            Price::factory()->create([
-                'type' => $type
+        foreach (self::FORMATS as $format) {
+            Format::factory()->create([
+                'type' => $format
             ]);
         }
     }
