@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Price>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Genre>
  */
-class PriceFactory extends Factory
+class GenreFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class PriceFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => fake()->word(),
-            'price' => fake()->randomFloat(2, 0, 10),
-            'late_fee' => fake()->randomFloat(2, 0, 5)
+            'name' => fake()->word()
         ];
     }
 }
