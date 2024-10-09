@@ -1,41 +1,52 @@
 @extends('admin.layout.master')
 
-@section('page-title', 'Nova cijena')
+@section('title', 'Nova cijena')
 
-@section('content')
-    <div class="title flex-between">
-        <h1>Kreiraj novu Cijenu</h1>
-    </div>
+@section('main')
 
+    <h1>Nova cijena</h1>
     <hr>
-
-    <form class="row g-3 mt-3" method="POST" action="/prices">
-        {{-- CROSS SITE REQUEST FORGERY --}}
-        @csrf
-        <div class="col-md-4">
-            <label for="tip_filma" class="form-label">Tip Filma</label>
-            <input type="text" class="form-control @error('tip_filma') is-invalid @enderror" id="tip_filma" name="tip_filma" placeholder="Tip Filma">
-            @error('tip_filma')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+    <form class="row g-3 mt-3" action="{{ route('prices.store') }}" method="POST">
+        {{-- cross site request forgery --}}
+        @csrf 
+        <div class="row mt-3">
+            <div class="col-1">
+                <label for="type" class="mt-1">Tip cijene</label>
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control" id="type" name="type" value="{{ old('type') }}" required>
+                @error('type')
+                    <span class="text-danger small">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
-        <div class="col-md-4">
-            <label for="cijena" class="form-label">Cijena</label>
-            <input type="number" step="0.01" class="form-control @error('cijena') is-invalid @enderror" id="cijena" name="cijena" placeholder="Cijena">
-            @error('cijena')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <div class="row mt-3">
+            <div class="col-1">
+                <label for="price" class="mt-1">Cijena</label>
+            </div>
+            <div class="col-6">
+                <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ old('price') }}" required>
+                @error('price')
+                    <span class="text-danger small">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
-        <div class="col-md-4">
-            <label for="zakasnina_po_danu" class="form-label">Zakasnina</label>
-            <input type="number" step="0.01" class="form-control @error('zakasnina_po_danu') is-invalid @enderror" id="zakasnina_po_danu" name="zakasnina_po_danu" placeholder="Zakasnina">
-            @error('zakasnina_po_danu')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <div class="row mt-3">
+            <div class="col-1">
+                <label for="late_fee" class="mt-1">Zakasnina</label>
+            </div>
+            <div class="col-6">
+                <input type="number" step="0.01" class="form-control" id="late_fee" name="late_fee" value="{{ old('late_fee') }}" required>
+                @error('late_fee')
+                    <span class="text-danger small">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
-        <div class="col-12 d-flex mt-4 justify-content-between">
-            <a href="/prices" class="btn btn-primary mb-3">Povratak</a>
-            <button type="submit" class="btn btn-success mb-3">Spremi</button>
+        <hr>
+        <div class="col-auto">
+            <a href="/prices" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Povratak"><i class="bi bi-arrow-return-left"></i></a>
+            <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Spremi"><i class="bi bi-floppy"></i></button>
         </div>
     </form>
+
 @endsection
