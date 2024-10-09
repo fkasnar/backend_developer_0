@@ -1,32 +1,20 @@
 <?php
 
-use App\Models\Price;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('frontend.home');
+    return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/prices', function () {
-
-    $prices = Price::all();
-
-    return view('admin.prices.index', [
-        'prices' => $prices
-    ]);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/prices/create', function() {
-    return view('admin.prices.create');
-});
-
-Route::post('/prices', function (Request $request) {
-    Price::validate($request->all());
-});
-
-
-
-// ORM - Object Relational Mapping
+require __DIR__.'/auth.php';
