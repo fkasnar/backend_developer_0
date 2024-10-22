@@ -23,17 +23,19 @@ class RoleSeeder extends Seeder
             $numberOfUsers = $roleName === "Admin" ? 3 : ($roleName === "Writer" ? 10 : 30);
 
             User::factory($numberOfUsers)->create([
-                'role_id' => $role->id
+                'role_id' => $role->id,
+                'firstName' => fake()->firstName(),
+                'lastName' => fake()->lastName(),
             ]);
         }
 
-        // dodavanje jednog korisnika za testiranje
+        // Add one user for testing
         User::factory()->create([
             'firstName' => 'Test',
             'lastName' => 'Member',
             'email' => 'test@member.com',
             'password' => Hash::make('123'),
-            'role_id' => $role->id
+            'role_id' => $role->id // Ensure this is the correct role ID
         ]);
     }
 }
