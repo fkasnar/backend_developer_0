@@ -9,16 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up()
+{
+    if (!Schema::hasTable('categories')) {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique();
-            $table->string('name')->unique();
+            $table->string('slug');
+            $table->string('name');
             $table->tinyInteger('order');
             $table->timestamps();
         });
     }
+}
+
 
     /**
      * Reverse the migrations.
